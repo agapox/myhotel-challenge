@@ -1,0 +1,18 @@
+<div class="card" *ngIf="post.id">
+  <div class="card-body">
+    <div class="card__author">
+      <img [src]="'https://i.pravatar.cc/70?img=' + post.userId" class="rounded float-start" alt="...">
+      <h6 class="card-subtitle mb-2 text-muted">
+        Author Id: <cite [title]="post.userId">{{ post.userId }}</cite>
+      </h6>
+    </div>
+    <h5 class="card-title">
+      {{ post.id + " " + post.title }}
+    </h5>
+    <p class="card-text">
+      {{ post.body }}
+    </p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
