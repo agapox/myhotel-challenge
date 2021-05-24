@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   public currentPosts: Array<Post> = [];
   public isPrevDisabled: boolean = false;
   public isNextDisabled: boolean = false;
-  private pageCount = 0;
-  private postPerPage = 10;
+  public pageCount = 0;
+  public postPerPage = 10;
 
   constructor(
     private postService: PostService
