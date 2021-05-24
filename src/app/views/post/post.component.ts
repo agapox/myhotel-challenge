@@ -56,21 +56,29 @@ export class PostComponent implements OnInit {
     this.isEditingPost = !this.isEditingPost;
   }
 
-  editPost(post: Post) {
-    console.log('edit')
+  editPost() {
     this.toggleEditPost()
 
   }
 
-  savePost(post: Post) {
-    console.log('savePost')
+  savePost() {
     this.toggleEditPost();
-    console.log(this.editPostForm);
+    const editedPost: Post = {
+      id: this.post.id,
+      title: this.editPostForm?.value.title,
+      body: this.editPostForm?.value.body,
+      userId: this.post.userId
+    }
+
+    this.postService.updatePost(editedPost).subscribe(post => {
+      this.post = editedPost
+      console.log(this.post);
+    })
   }
 
-  deletePost(post: Post) {
+  deletePost() {
     console.log('delete');
-    this.postService.deletePost(post).subscribe(data => {
+    this.postService.deletePost(this.post).subscribe(data => {
       if (data) {
         console.log('deleted')
         this.router.navigate(['../']);

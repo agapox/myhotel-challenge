@@ -1,4 +1,4 @@
-<div id="post">
+<div id="post" *ngIf="post.id">
   <div class="container mt-5 mb-4" *ngIf="isEditingPost">
     <div class="row">
       <div class="col-sm-12">
@@ -27,7 +27,7 @@
 
             <div class="mt-5 mb-4 form__actions">
               <button type="button" class="btn btn-outline-primary" (click)="toggleEditPost()">Cancel</button>
-              <button type="button" class="btn btn-primary" (click)="savePost(post)">Edit Post</button>
+              <button type="button" class="btn btn-primary" (click)="savePost()">Edit Post</button>
             </div>
           </form>
         </div>
@@ -60,7 +60,7 @@
       <div class="row">
         <div class="col-sm-12 actions text-right">
           <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Post</button>
-          <button class="btn btn-outline-primary" (click)="editPost(post)">Edit Post</button>
+          <button class="btn btn-outline-primary" (click)="editPost()">Edit Post</button>
           <button class="btn btn-primary" (click)="goBack()">Go back</button>
         </div>
       </div>
@@ -82,7 +82,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger" (click)="deletePost(post)" data-bs-dismiss="modal">Delete Post</button>
+          <button type="button" class="btn btn-danger" (click)="deletePost()" data-bs-dismiss="modal">Delete Post</button>
         </div>
       </div>
 
