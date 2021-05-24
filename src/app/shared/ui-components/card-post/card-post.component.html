@@ -4,15 +4,16 @@
       <img [src]="'https://i.pravatar.cc/70?img=' + post.userId" class="rounded float-start" alt="...">
       <h6 class="card-subtitle mb-2 text-muted">
         Author Id: <cite [title]="post.userId">{{ post.userId }}</cite>
+        <br>
+        Article Id: {{ post.id }}
       </h6>
     </div>
-    <h5 class="card-title">
-      {{ post.id + " " + post.title }}
-    </h5>
+    <h6 class="card-title">
+      {{ post.title }}
+    </h6>
     <p class="card-text">
       {{ post.body }}
     </p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    <a href="#" class="btn btn-primary float-end">Read more</a>
   </div>
 </div>
