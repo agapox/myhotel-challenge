@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Post } from 'src/app/shared/interfaces/post.interface';
 import { PostService } from 'src/app/shared/services/post.service';
 
@@ -15,6 +16,8 @@ export class HomeComponent implements OnInit {
   public isNextDisabled: boolean = false;
   public pageCount = 0;
   public postPerPage = 10;
+  public createPostStatus: 'create' | 'creating' | 'created' = 'create';
+  public newPostForm: FormGroup | undefined;
 
   constructor(
     private postService: PostService
@@ -57,6 +60,41 @@ export class HomeComponent implements OnInit {
     console.log('next clicked');
     this.pageCount++;
     this.getCurrentPosts();
+  }
+
+  createPost() {
+    console.log('create post');
+    this.generateForm();
+    console.log(this.newPostForm?.value)
+  }
+
+  creatingPost() {
+    this.createPostStatus = 'creating';
+    console.log(this.newPostForm)
+    const post: Post = {
+      title: this.newPostForm?.value.title,
+      body: this.newPostForm?.value.body,
+      userId: this.newPostForm?.value.userId
+    }
+    this.postService.createPost(post).subscribe(data => {
+      const { id } = data;
+      this.posts.unshift({ ...post, id });
+      this.getCurrentPosts()
+      console.log(data);
+      this.createPostStatus = 'created';
+    })
+  }
+
+  resetCreation() {
+    this.createPostStatus = 'create';
+  }
+
+  generateForm() {
+    this.newPostForm = new FormGroup({
+      title: new FormControl(null),
+      body: new FormControl(null),
+      userId: new FormControl(1)
+    });
   }
 
 }
