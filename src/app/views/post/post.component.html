@@ -1,0 +1,93 @@
+<div id="post">
+  <div class="container mt-5 mb-4" *ngIf="isEditingPost">
+    <div class="row">
+      <div class="col-sm-12">
+        <div *ngIf="editPostForm">
+          <form [formGroup]="editPostForm">
+            <label class="form-label" for="">User Id</label>
+            <input
+              readonly
+              class="form-control mb-4"
+              type="text"
+              id="userId"
+              formControlName="userId">
+            <label class="form-label" for="">Title</label>
+            <input
+              class="form-control mb-4"
+              type="text"
+              id="title"
+              formControlName="title">
+            <label class="form-label" for="">Body</label>
+            <textarea
+              class="form-control mb-4"
+              type="text"
+              id="body"
+              formControlName="body">
+            </textarea>
+
+            <div class="mt-5 mb-4 form__actions">
+              <button type="button" class="btn btn-outline-primary" (click)="toggleEditPost()">Cancel</button>
+              <button type="button" class="btn btn-primary" (click)="savePost(post)">Edit Post</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5 mb-4" *ngIf="!isEditingPost">
+    <div class="row">
+      <div class="col-sm-12">
+        <div *ngIf="post.id">
+          <h1 class="mb-4">
+            {{ post.title }}
+          </h1>
+          <p class="fs-4  ">
+            {{ post.body }}
+          </p>
+          <h5>
+            Article Id: {{ post.id }}
+          </h5>
+        </div>
+      </div>
+      <div class="row mt-3 mb-5">
+        <div class="col-sm-12">
+          <div class="author">
+            <img [src]="'https://i.pravatar.cc/100?img=' + post.userId" class="float-start" alt="...">
+            Author Id: <cite [title]="post.userId">{{ post.userId }}</cite>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 actions text-right">
+          <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Post</button>
+          <button class="btn btn-outline-primary" (click)="editPost(post)">Edit Post</button>
+          <button class="btn btn-primary" (click)="goBack()">Go back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Please confirm to delete the post
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="deletePost(post)" data-bs-dismiss="modal">Delete Post</button>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+:host {
+
+  .author {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    img {
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 1rem;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin: 1rem;
+      width: 130px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .form {
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin: 1rem;
+        width: 130px;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+  }
+  textarea {
+    min-height: 150px;
+  }
+}
