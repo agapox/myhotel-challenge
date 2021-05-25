@@ -2,9 +2,19 @@
 
   .home {
     &__actions {
+      > div {
+        @media screen and (max-width: 360px) {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
       button {
         margin: 16px;
         width: 100px;
+        @media screen and (max-width: 360px) {
+          width: 100%;
+        }
       }
     }
   }

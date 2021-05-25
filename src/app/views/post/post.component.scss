@@ -16,15 +16,30 @@
     display: flex;
     justify-content: flex-end;
 
+    @media screen and (max-width: 450px) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     button {
       margin: 1rem;
       width: 130px;
+      @media screen and (max-width: 450px) {
+        margin: 8px 8px;
+        width: 100%;
+      }
 
       &:first-child {
         margin-left: 0;
+        @media screen and (max-width: 450px) {
+          margin-left: 8px;
+        }
       }
       &:last-child {
         margin-right: 0;
+        @media screen and (max-width: 450px) {
+          margin-right: 8px;
+        }
       }
     }
   }
