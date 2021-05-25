@@ -1,0 +1,62 @@
+:host {
+  display: block;
+
+  footer {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(to bottom right, #62a1fe, #0d6efd);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: bold;
+      &:visited {
+        color:inherit
+      }
+      &:hover {
+        color: #cddc39;
+      }
+    }
+
+    .fa-heart {
+      width: auto;
+      height: 16px;
+      vertical-align: text-top;
+      $color_heart: #992d2d;
+      $color_heartbeat: #ff0000;
+      color: $color_heart;
+      transform: scale3d(1,1,1);
+      animation: heart-beating 5s ease-in infinite forwards;
+      @keyframes heart-beating {
+        0% {
+          transform: scale3d(1,1,1);
+          color: $color_heart;
+        }
+        10% {
+          transform: scale3d(1,1,1);
+          color: $color_heart;
+        }
+        18% {
+          transform: scale3d(1.08,1.08,1.08);
+          color: $color_heartbeat;
+        }
+        23% {
+          transform: scale3d(1.04,1.04,1.04);
+          color: $color_heart;
+        }
+        28% {
+          transform: scale3d(1.07,1.07,1.07);
+          color: $color_heartbeat;
+        }
+        33% {
+          transform: scale3d(1,1,1);
+          color: $color_heart;
+        }
+
+      }
+    }
+  }
+}
