@@ -21,6 +21,7 @@ Create a CRUD of Posts, I decided to use `jsonplaceholder` API for posts data. H
 * A service of posts `post.service` is created for managing to request of the data (get, post, put, delete).
 * A `card-post` component is created for the post items to modularize and better component manipulation.
 * A `views folder` is created for managing all the views, like: home, post (post-details).
+* A directive `highlight` for hightlighting the borders of the `card-post` on `mouseenter` and `mouseleve`. :ok_hand:
 * Use git for version control of the code. :octocat:
 * Use of semantic commits. Ex: :octocat:
     * `feature(component, module, etc): description of the feature or modification `
@@ -62,7 +63,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
 
 &nbsp;
 
