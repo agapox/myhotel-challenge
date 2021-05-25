@@ -8,4 +8,20 @@
       }
     }
   }
+
+  .form-row {
+
+    .form-control {
+      margin-bottom: 4px;
+    }
+
+    .help-block {
+      font-size: 14px;
+
+      &.invalid {
+        color: red;
+      }
+    }
+  }
+
 }

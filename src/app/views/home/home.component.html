@@ -30,7 +30,9 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade"
+    data-bs-backdrop="static" data-bs-keyboard="false"
+    id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -46,25 +48,48 @@
               type="text"
               id="userId"
               formControlName="userId">
-            <label class="form-label" for="">Title</label>
-            <input
-              class="form-control mb-4"
-              type="text"
-              id="title"
-              formControlName="title">
-            <label class="form-label" for="">Body</label>
-            <textarea
-              class="form-control mb-4"
-              type="text"
-              id="body"
-              formControlName="body">
-            </textarea>
+            <div class="form-row mb-4">
+              <label class="form-label" for="">Title</label>
+              <input
+                [readonly]="createPostStatus !== 'create'"
+                class="form-control"
+                type="text"
+                id="title"
+                formControlName="title">
+              <span
+                [ngClass]="{'invalid': !newPostForm.get('title')?.valid && newPostForm.get('title')?.touched}"
+                class="help-block"
+                *ngIf="!newPostForm.get('title')?.valid && newPostForm.get('title')?.touched">
+                The post title must be at least 10 characters
+              </span>
+            </div>
+
+            <div class="form-row mb-4">
+              <label class="form-label" for="">Body</label>
+              <textarea
+                [readonly]="createPostStatus !== 'create'"
+                class="form-control"
+                type="text"
+                id="body"
+                formControlName="body">
+              </textarea>
+              <span
+                [ngClass]="{'invalid': !newPostForm.get('body')?.valid && newPostForm.get('body')?.touched}"
+                class="help-block"
+                *ngIf="!newPostForm.get('body')?.valid && newPostForm.get('body')?.touched">
+                The post body must be at least 15 characters
+              </span>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+
           <ng-container [ngSwitch]="createPostStatus">
             <ng-container *ngSwitchCase="'create'">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal">Cancel</button>
               <button
                 type="button"
                 (click)="creatingPost()"

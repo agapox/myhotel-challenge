@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/shared/interfaces/post.interface';
 import { PostService } from 'src/app/shared/services/post.service';
 
@@ -51,49 +51,47 @@ export class HomeComponent implements OnInit {
   }
 
   getPrevPosts() {
-    console.log('prev clicked');
     this.pageCount--;
     this.getCurrentPosts();
   }
 
   getNextPosts() {
-    console.log('next clicked');
     this.pageCount++;
     this.getCurrentPosts();
   }
 
   createPost() {
-    console.log('create post');
     this.generateForm();
-    console.log(this.newPostForm?.value)
   }
 
   creatingPost() {
-    this.createPostStatus = 'creating';
-    console.log(this.newPostForm)
-    const post: Post = {
-      title: this.newPostForm?.value.title,
-      body: this.newPostForm?.value.body,
-      userId: this.newPostForm?.value.userId
+    if (this.newPostForm?.status === 'VALID') {
+      this.createPostStatus = 'creating';
+      const post: Post = {
+        title: this.newPostForm?.value.title,
+        body: this.newPostForm?.value.body,
+        userId: this.newPostForm?.value.userId
+      }
+      this.postService.createPost(post).subscribe(data => {
+        const { id } = data;
+        this.posts.unshift({ ...post, id });
+        this.getCurrentPosts()
+        this.createPostStatus = 'created';
+      })
     }
-    this.postService.createPost(post).subscribe(data => {
-      const { id } = data;
-      this.posts.unshift({ ...post, id });
-      this.getCurrentPosts()
-      console.log(data);
-      this.createPostStatus = 'created';
-    })
   }
 
   resetCreation() {
     this.createPostStatus = 'create';
+    this.newPostForm?.controls['title'].enable()
+    this.newPostForm?.controls['body'].enable()
   }
 
   generateForm() {
     this.newPostForm = new FormGroup({
-      title: new FormControl(null),
-      body: new FormControl(null),
-      userId: new FormControl(1)
+      title: new FormControl(null, [Validators.required, Validators.minLength(10)]),
+      body: new FormControl(null, [Validators.required, Validators.minLength(10)]),
+      userId: new FormControl(1, Validators.required)
     });
   }
 
